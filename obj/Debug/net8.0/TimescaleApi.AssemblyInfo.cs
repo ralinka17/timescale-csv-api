@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TimescaleApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b043ccd85ab9223ad163edbda5d51e2005302b81")]
 [assembly: System.Reflection.AssemblyProductAttribute("TimescaleApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TimescaleApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
