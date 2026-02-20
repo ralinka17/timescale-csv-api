@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TimescaleApi.Data;
+using TimescaleApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionSctring)
     .EnableSensitiveDataLogging()
     .EnableDetailedErrors());
+
+builder.Services.AddScoped<ICsvService, CsvService>();
 
 // builder.Services.AddScoped<ICsvProcessingService, CsvProcessingService>();
 // builder.Services.AddScoped<IValueRepository, ValueRepository>();
