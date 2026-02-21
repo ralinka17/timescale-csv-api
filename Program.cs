@@ -19,6 +19,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     .EnableDetailedErrors()); // для dev
 
 builder.Services.AddScoped<ICsvService, CsvService>();
+builder.Services.AddScoped<IResultService, ResultService>();   
+builder.Services.AddScoped<IValueService, ValueService>();     
 
 // builder.Services.AddScoped<ICsvProcessingService, CsvProcessingService>();
 // builder.Services.AddScoped<IValueRepository, ValueRepository>();
