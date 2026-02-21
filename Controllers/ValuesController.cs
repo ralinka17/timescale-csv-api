@@ -33,7 +33,8 @@ public class ValuesController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, $"Internal error: {ex.Message}");
+            Console.WriteLine("Controller catch: " + ex.ToString()); // или используй ILogger
+            return StatusCode(500, $"Internal error: {ex.Message}\nDetails: {ex.InnerException?.Message}");
         }
     }
 }

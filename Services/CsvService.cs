@@ -60,8 +60,8 @@ public class CsvService : ICsvService
         var parsedExecutionTimes = new List<double>();
         var parsedValues = new List<double>();
 
-        var minDate = DateTime.MaxValue;
-        var maxDate = DateTime.MinValue;
+        var minDate = DateTime.MaxValue.ToUniversalTime();
+        var maxDate = DateTime.MinValue.ToUniversalTime();
 
         foreach (var record in records)
         {
@@ -74,17 +74,21 @@ public class CsvService : ICsvService
             }
 
             // Парсинг Date: формат ГГГГ-ММ-ДДTчч:мм:сс.ммммZ (ISO с Z)
-            if (!DateTime.TryParseExact(record.DateString, "yyyy-MM-ddTHH:mm:ss.ffffZ", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var date))
+            if (!DateTime.TryParseExact(record.DateString, "yyyy-MM-ddTHH:mm:ss.ffffZ",
+    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal,
+    out var date))
             {
                 throw new BadHttpRequestException($"Invalid Date format: {record.DateString}");
             }
+            date = date.ToUniversalTime();
 
-            // Валидация Date
             var now = DateTime.UtcNow;
-            var minAllowedDate = new DateTime(2000, 1, 1);
+            var minAllowedDate = new DateTime(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             if (date > now || date < minAllowedDate)
             {
+                
                 throw new BadHttpRequestException($"Date out of range: {date} (must be 2000-01-01 to now).");
+                
             }
 
             // Парсинг ExecutionTime
@@ -145,11 +149,9 @@ public class CsvService : ICsvService
         await using var transaction = await _context.Database.BeginTransactionAsync();
         try
         {
-            // Удаляем старые Values и Result по FileName
             await _context.Values.Where(v => v.FileName == fileName).ExecuteDeleteAsync();
             await _context.Results.Where(r => r.FileName == fileName).ExecuteDeleteAsync();
 
-            // Добавляем новые (batch для эффективности)
             _context.Values.AddRange(values);
             _context.Results.Add(result);
 
@@ -157,10 +159,19 @@ public class CsvService : ICsvService
 
             await transaction.CommitAsync();
         }
-        catch
+        catch (DbUpdateException dbEx)
         {
+            var inner = dbEx.InnerException?.Message ?? dbEx.Message;
+            Console.WriteLine("DbUpdateException: " + inner);
+            Console.WriteLine(dbEx.ToString()); // полный стек
             await transaction.RollbackAsync();
-            throw;  // Пробрасываем ошибку вверх
+            throw new Exception("Ошибка сохранения в БД: " + inner, dbEx);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Общая ошибка: " + ex.ToString());
+            await transaction.RollbackAsync();
+            throw;
         }
     }
 }

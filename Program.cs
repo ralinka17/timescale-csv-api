@@ -11,12 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-var connectionSctring = builder.Configuration.GetConnectionString("Defailt");
+var connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionSctring)
-    .EnableSensitiveDataLogging()
-    .EnableDetailedErrors());
+    options.UseNpgsql(connectionString)
+    .EnableSensitiveDataLogging() // для dev
+    .EnableDetailedErrors()); // для dev
 
 builder.Services.AddScoped<ICsvService, CsvService>();
 

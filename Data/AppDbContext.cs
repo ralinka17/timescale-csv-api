@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Value>().ToTable("values");
+        modelBuilder.Entity<Result>().ToTable("results");
 
         // Индекс для эффективности запросов (FileName DESC, Date DESC)
         modelBuilder.Entity<Value>()
