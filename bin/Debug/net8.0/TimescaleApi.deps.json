@@ -10,7 +10,9 @@
         "dependencies": {
           "CsvHelper": "33.1.0",
           "FluentAssertions": "8.8.0",
+          "Microsoft.EntityFrameworkCore": "8.0.24",
           "Microsoft.EntityFrameworkCore.Design": "8.0.24",
+          "Microsoft.EntityFrameworkCore.InMemory": "8.0.24",
           "Microsoft.NET.Test.Sdk": "18.0.1",
           "Moq": "4.20.72",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.11",
@@ -311,6 +313,17 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "8.0.24.0",
+            "fileVersion": "8.0.2426.7202"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.InMemory/8.0.24": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.24"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
             "assemblyVersion": "8.0.24.0",
             "fileVersion": "8.0.2426.7202"
           }
@@ -967,6 +980,13 @@
       "sha512": "sha512-C/4u0K68tnv7+gci1aB8x6MMS/U+00SS/2/u2tyaF9S5azIrELc3c8qf7UGB2GT7/sXHP0fhT/od2dg4gU0sSg==",
       "path": "microsoft.entityframeworkcore.design/8.0.24",
       "hashPath": "microsoft.entityframeworkcore.design.8.0.24.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/8.0.24": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M6Sfe0v3WxtMGLpK+yX3AFfoV9nNlgIADf4sQPc+BmOaPAHFrRCX5/8yF8u7LHqX+3TXqTInjU6rBhMRF5lI4A==",
+      "path": "microsoft.entityframeworkcore.inmemory/8.0.24",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.8.0.24.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.24": {
       "type": "package",

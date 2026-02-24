@@ -45,8 +45,11 @@ public class ValuesController : ControllerBase
     /// </summary>
     /// <param name="fileName">Имя файла без расширения</param>
     [HttpGet("last10")]
+
     public async Task<IActionResult> GetLast10([FromQuery] string fileName)
     {
+        fileName = Path.GetFileNameWithoutExtension(fileName ?? "");
+
         try
         {
             var values = await _valueService.GetLast10ByFileNameAsync(fileName);

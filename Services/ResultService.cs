@@ -16,6 +16,11 @@ public class ResultService : IResultService
 
     public async Task<List<Result>> GetFilteredResultsAsync(ResultFilterDto filter)
     {
+        if (!string.IsNullOrWhiteSpace(filter.FileName))
+        {
+            filter.FileName = Path.GetFileNameWithoutExtension(filter.FileName);
+        }
+
         var query = _context.Results
             .AsNoTracking() // для чтения — ускоряет и экономит память
             .AsQueryable();
