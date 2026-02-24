@@ -198,3 +198,5 @@ C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\obj\Debug\net8.0\refint\Ti
 C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\obj\Debug\net8.0\TimescaleApi.pdb
 C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\obj\Debug\net8.0\TimescaleApi.genruntimeconfig.cache
 C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\obj\Debug\net8.0\ref\TimescaleApi.dll
+C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\supre\source\repos\TimescaleApi\TimescaleApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
