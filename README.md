@@ -12,3 +12,5 @@ Web API на ASP.NET Core 8 для загрузки CSV-файлов, валид
 
 4. Запустить проект
    dotnet run
+
+Swagger откроется на: https://localhost:7236 (или http://localhost:5167)
